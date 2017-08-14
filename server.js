@@ -100,8 +100,8 @@ app.get('/:articleName',function(req, res){
 });
 
 var names=[];
-app.get('/submit-name/:name',function(req, res){
-    var name=req.params.name;
+app.get('/submit-name/:name',function(req, res){// /submit-name?name=xxxx
+    var name=req.query.name;
     names.push(name);
     //JSON javascript object notation
     res.send(JSON.stringify(names));
