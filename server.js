@@ -77,7 +77,19 @@ var htmlTemplate=`
 return htmlTemplate;
 }
 
+var counter=0;
+app.get('/counter',function(req, res){
+    counter=counter+1;
+    res.send(counter.toString());
+});
 
+var names=[];
+app.get('/submit-name',function(req, res){// /submit-name?name=xxxx
+    var name=req.query.name;
+    names.push(name);
+    //JSON javascript object notation
+    res.send(JSON.stringify(names));
+});
 
 
 app.get('/', function (req, res) {
@@ -98,19 +110,7 @@ app.get('/test-db',function(req,res){
     });
 });
 
-var counter=0;
-app.get('/counter',function(req, res){
-    counter=counter+1;
-    res.send(counter.toString());
-});
 
-var names=[];
-app.get('/submit-name',function(req, res){// /submit-name?name=xxxx
-    var name=req.query.name;
-    names.push(name);
-    //JSON javascript object notation
-    res.send(JSON.stringify(names));
-});
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
