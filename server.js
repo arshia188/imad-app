@@ -130,7 +130,7 @@ app.get('/ui/main.js', function (req, res) {
 
 
 app.get('/articles/:articleName',function(req, res){
-    POOL.QUERY("SELECT * FROM article WHERE title= "+req.params.articleName,function(err,result){
+    pool.query("SELECT * FROM article WHERE title='"+req.params.articleName+"'",function(err,result){
         if(err)
         {
             res.status(500).send(err.toString());
