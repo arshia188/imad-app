@@ -1,17 +1,19 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var Pool=require('path');
-var app = express();
-app.use(morgan('combined'));
+var Pool=require('pg').Pool;
 var config={
     user: 'arshia188',
     database:'arshia188',
     host:'db.imad.hasura-app.io',
     port:'5432',
-    password:process.env. DB_PASSWORD
+    password:process.env.DB_PASSWORD
     
 };
+
+var app = express();
+app.use(morgan('combined'));
+
 var articles={
     
 'article-one':{
@@ -77,11 +79,7 @@ var htmlTemplate=`
 return htmlTemplate;
 }
 
-var counter=0;
-app.get('/counter',function(req, res){
-    counter=counter+1;
-    res.send(counter.toString());
-});
+
 
 
 
@@ -102,6 +100,11 @@ app.get('/test-db',function(req,res){
         }
     });
 });*/
+var counter=0;
+app.get('/counter',function(req, res){
+    counter=counter+1;
+    res.send(counter.toString());
+});
 
 var names=[];
 app.get('/submit-name',function(req, res){// /submit-name?name=xxxx
