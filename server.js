@@ -83,13 +83,6 @@ app.get('/counter',function(req, res){
     res.send(counter.toString());
 });
 
-var names=[];
-app.get('/submit-name',function(req, res){// /submit-name?name=xxxx
-    var name=req.query.name;
-    names.push(name);
-    //JSON javascript object notation
-    res.send(JSON.stringify(names));
-});
 
 
 app.get('/', function (req, res) {
@@ -108,6 +101,14 @@ app.get('/test-db',function(req,res){
             res.send(JSON.stringify(result));
         }
     });
+});
+
+var names=[];
+app.get('/submit-name',function(req, res){// /submit-name?name=xxxx
+    var name=req.query.name;
+    names.push(name);
+    //JSON javascript object notation
+    res.send(JSON.stringify(names));
 });
 
 
